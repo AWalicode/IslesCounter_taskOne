@@ -26,33 +26,30 @@ public class IslesCounter {
 			height = map[x].length;
 			for(int y = 0; y < height; y++) {
 				if(map[x][y] == 1) {
-					try {
-						if(map[x-1][y] == 0 && map[x-1][y-1] == 0 && map[x][y-1] == 0 && map[x+1][y-1] == 0) {
+					if(x == 0 && y == 0) {
+						counter++;
+						continue;
+					}
+					if(x == 0) {
+						if(map[x][y-1] == 0 && map[x+1][y-1] == 0) {
 							counter++;
 						}
-					}catch(ArrayIndexOutOfBoundsException e) {
-						if(x == 0 && y == 0) {
+						continue;
+					}
+					if(y == 0) {
+						if(map[x-1][y] == 0) {
 							counter++;
-							continue;
 						}
-						if(x == 0) {
-							if(map[x][y-1] == 0 && map[x+1][y-1] == 0) {
-								counter++;
-							}
-							continue;
+						continue;
+					}
+					if(x == width-1) {
+						if(map[x-1][y] == 0 && map[x-1][y-1] == 0 && map[x][y-1] == 0) {
+							counter++;
 						}
-						if(y == 0) {
-							if(map[x-1][y] == 0) {
-								counter++;
-							}
-							continue;
-						}
-						if(x == width-1) {
-							if(map[x-1][y] == 0 && map[x-1][y-1] == 0 && map[x][y-1] == 0) {
-								counter++;
-							}
-							continue;
-						}
+						continue;
+					}
+					if(map[x-1][y] == 0 && map[x-1][y-1] == 0 && map[x][y-1] == 0 && map[x+1][y-1] == 0) {
+						counter++;
 					}
 				}
 			}
